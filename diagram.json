@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "author": "User",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 19.2, "left": 24.04, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -182.1, "left": 321, "attrs": {} },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir1", "top": -5.6, "left": -285.78, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -358.4,
+      "left": -80.8,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -157.2,
+      "left": -188.2,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 81.6,
+      "left": -202.15,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "esp:15", "dht1:SDA", "green", [ "h0" ] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v28.8", "h-292.99" ] ],
+    [ "dht1:GND", "esp:GND.2", "black", [ "v67.2", "h-225.64" ] ],
+    [ "esp:12", "pir1:OUT", "orange", [ "h-81.41", "v19.2", "h-134.26" ] ],
+    [ "pir1:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "pir1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "esp:21", "lcd1:SDA", "blue", [ "h91.24", "v-105.6", "h-268.88", "v-115.4" ] ],
+    [ "esp:22", "lcd1:SCL", "yellow", [ "h33.64", "v-67.2", "h-201.6", "v-115.5" ] ],
+    [ "lcd1:VCC", "esp:5V", "red", [ "h-38.4", "v489.7", "h134.25" ] ],
+    [ "lcd1:GND", "esp:GND.1", "black", [ "h-48", "v134.4", "h100.61" ] ],
+    [ "esp:32", "led1:A", "purple", [ "h0" ] ],
+    [ "led1:C", "r1:1", "black", [ "v0" ] ],
+    [ "r1:2", "esp:GND.1", "black", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
